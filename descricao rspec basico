@@ -1,0 +1,82 @@
+Inicializar o rspec 
+
+- Criar uma pasta do projeto, acessar o terminal dentro da pasta criada e inserir o seguinte comando  <rspec --init>, esse comando inicializa o projeto via rspec. 
+
+
+Definição de "describe" e "it"
+
+"describe", é  um metodo que cria um grupo de exemplos dentro de um bloco passando a "describe", vode pode declarar grupos aninhados usando as "describe" ou "context"  metodos, ou pode declarar usand "it" ou "specify". 
+
+"it", serve para descriver o metodo que será testado naquele momento 
+
+Exemplo: 
+
+describe "soma"  do 
+    
+        it "testar soma de dois numero"
+            
+            #bloco aonde iremos definir a soma 
+        end
+    end
+    
+Um describe pode conter varios "it", dentro do mesmo bloco
+
+"context", o metodo de contexto faz a mesma coisa que o describe, permitindo contuxtualizar um bloco de seus testes isso é extremamente poderoso para estados de teste quando voce adiciona uma configuração  mas complicada e um codigo de desmontagem para realmente entrar em seus objetos
+
+Exemplo:
+
+    describe "somar" do 
+        context "somar dois numeros" do 
+            
+            it"negativo" do 
+            
+                    #-2 + (-2)
+            end
+            
+            it "positivos" do 
+                
+                    # 2 + 2
+            end
+        end
+    end
+    
+"let", quando voce precisa atribuir uma variavel, ao invés de usar um bloco before para criar uma varial de instancia, usa let ao usar o let, a variavel é carregada apenas quando ela é utilizada pela primeira vez no teste e fica na cache até o teste em questão terminar. 
+
+Exemplo:
+
+    describe "soma" do 
+    
+    context "somar dois numeros" do
+    
+        let(:resultado){2+2}
+            it"positivos" do
+                #resultado + 2
+        
+        end
+    end
+end
+
+
+"matcher", o rspec-expectations é fornecido com varios matchers integrados, cada marcher pode ser usado com expect(..).to ou expect(...).not_to para definir expectativas positivas e negativas respectivamente
+
+"hooks", como um desenvolvedor usando o rspec eu quero executar código arbitrário antes e depois de cada exemplo, para que eu posa controlar o ambiente no qual ele é executado isso é suportado pelo metodo "before" e "after", em que cada um pega um simbolo indicado o escopo e um bloco de código para executar. 
+
+Exemplo: 
+
+    describe "an error in before" do 
+        before(:all) do 
+            raise "oops"
+        
+        end
+    
+    it "fails this example" do 
+        end
+        
+        after(:all) do 
+        puts "after all ran"
+        
+        end
+    end
+    
+    
+"tags", define o a unica unidade que deseja rodar atras do comando <rspec -tags> que inseriu no codigo  
